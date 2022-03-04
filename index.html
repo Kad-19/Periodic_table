@@ -1,0 +1,4894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Periodic_Table</title>
+    <style>
+        body {
+            background: rgb(15, 25, 35);
+            color: white;
+        }
+        header p {
+            padding: 10px;
+            margin: 10px;
+            border: none;
+            position: relative;
+            top: 0px;
+            left: 100px;
+            font-weight: 10;
+            font-family: Calibri, Helvetica, Arial, Sans-serif;
+            font-size: 60px;
+        }
+        table {
+            position: relative;
+            top: 20px;
+            left: 100px;
+        }
+        #col1 {
+            width: 80px;
+        }
+        #lower_table {
+            position: relative;
+            top: 35px;
+            left: 168px;
+        }
+        #foo {
+            color: white;
+            font-size: 13px;
+            font-family: Cursive, Helvetica, Arial, Sans-serif;
+            position: relative;
+            top: 60px;
+            left: 188px;
+            border-collapse: collapse;
+
+        }
+        #foo tr td {
+            display: inline-block;
+            padding: 3px 10px;
+        }
+        .Other_nonmetals, .Alkali_metals, .Alkaline_earth_metals, .OutOfTable, .Transition_metals, .Post-transition_metals, .Metalloids, .Halogens, .Noble_gases, .Lanthanides, .Actinides, .bars {
+            width: 50px;
+            height: 40px;
+            border: 2px solid rgb(15, 25, 35);
+            border-radius: 5px;
+            font-family: system-ui, Arial, sans-serif;
+            letter-spacing: 1px;
+        }
+        .OutOfTable {
+            font-family: Calibri, Helvetica, Arial, Sans-serif;
+        }
+
+        .symbols {
+            font-size: 15px;
+            text-align: center;
+            font-weight: 540;
+        }
+        span {
+            vertical-align: super;
+            font-size: 10px;
+
+
+        }
+        .text {
+            width: 120px;
+            height: 40px;
+            border: 2px solid rgb(15, 25, 35);
+            text-align: center;
+            font-family: Calibri, Helvetica, Arial, Sans-serif;
+            letter-spacing: 0px;
+            font-weight: 400;
+        }
+        .text, .period, th, header {
+            color: rgba(210, 210, 230, 1.0);
+        }
+        .period, th {
+            font-size: 12px;
+
+        }
+
+    </style>
+
+    <style>
+        .Other_nonmetals, #H_el, #H_des, #C_el, #C_des, #N_el, #N_des, #O_el, #O_des, #P_el, #P_des, #S_el, #S_des, #Se_el, #Se_des, #ON {
+            background-color: rgba(80, 100, 80, 1.0);
+        }
+        .Alkali_metals, #Li_el, #Li_des, #Na_el, #Na_des, #K_el, #K_des, #Rb_el, #Rb_des, #Cs_el, #Cs_des, #Fr_el, #Fr_des, #AM {
+            background-color: rgba(120, 20, 80, 1.0);
+        }
+        .Alkaline_earth_metals, #Be_el, #Be_des, #Mg_el, #Mg_des, #Ca_el, #Ca_des, #Sr_el, #Sr_des, #Ba_el, #Ba_des, #Ra_el, #Ra_des, #AEM {
+            background-color: rgba(30, 50, 100, 1.0);
+        }
+        .Transition_metals,#Sc_el, #Sc_des, #Ti_el, #Ti_des, #V_el, #V_des, #Cr_el, #Cr_des, #Mn_el, #Mn_des, #Fe_el, #Fe_des, #Co_el, #Co_des, #Ni_el, #Ni_des,
+          #Cu_el, #Cu_des, #Zn_el, #Zn_des, #Y_el, #Y_des, #Zr_el, #Zr_des, #Nb_el, #Nb_des, #Mo_el, #Mo_des, #Tc_el, #Tc_des, #Ru_el, #Ru_des,
+           #Rh_el, #Rh_des, #Pd_el, #Pd_des, #Ag_el, #Ag_des, #Cd_el, #Cd_des, #Hf_el, #Hf_des, #Ta_el, #Ta_des, #W_el, #W_des, #Re_el, #Re_des,
+            #Os_el, #Os_des, #Ir_el, #Ir_des, #Pt_el, #Pt_des, #Au_el, #Au_des, #Hg_el, #Hg_des, #Rf_el, #Rf_des, #Db_el, #Db_des, #Sg_el, #Sg_des,
+             #Bh_el, #Bh_des, #Hs_el, #Hs_des, #Mt_el, #Mt_des, #Ds_el, #Ds_des, #Rg_el, #Rg_des, #Cn_el, #Cn_des, #TM {
+            background-color: rgba(150, 30, 30, 1.0);
+        }
+        .Post-transition_metals, #Al_el, #Al_des, #Ga_el, #Ga_des, #In_el, #In_des, #Sn_el, #Sn_des, #Tl_el, #Tl_des, #Pb_el, #Pb_des,
+         #Bi_el, #Bi_des, #Nh_el, #Nh_des, #Fl_el, #Fl_des, #Mc_el, #Mc_des, #Lv_el, #Lv_des, #PM {
+            background-color: rgba(150, 20, 200, 1.0);
+        }
+        .Metalloids, #B_el, #B_des, #Si_el, #Si_des, #Ge_el, #Ge_des, #As_el, #As_des, #Sb_el, #Sb_des, #Te_el, #Te_des, #Po_el, #Po_des, #ME {
+            background-color: rgba(200, 70, 10, 1.0);
+        }
+        .Halogens, #F_el, #F_des, #Cl_el, #Cl_des, #Br_el, #Br_des, #I_el, #I_des, #At_el, #At_des, #Ts_el, #Ts_des, #HA {
+            background-color: rgba(10, 130, 160, 1.0);
+        }
+        .Noble_gases, #He_el, #He_des, #Ne_el, #Ne_des, #Ar_el, #Ar_des, #Kr_el, #Kr_des, #Xe_el, #Xe_des, #Rn_el, #Rn_des, #Og_el, #Og_des, #NG {
+            background-color: rgba(60, 120, 20, 1.0);
+        }
+        .Lanthanides, #La_el, #La_des, #Ce_el, #Ce_des, #Pr_el, #Pr_des, #Nd_el, #Nd_des, #Pm_el, #Pm_des, #Sm_el, #Sm_des,
+          #Eu_el, #Eu_des, #Gd_el, #Gd_des, #Tb_el, #Tb_des, #Dy_el, #Dy_des, #Ho_el, #Ho_des, #Er_el, #Er_des, #Tm_el, #Tm_des,
+          #Yb_el, #Yb_des, #Lu_el, #Lu_des, #LA {
+            background-color: rgba(140, 90, 30, 1.0);
+        }
+        .Actinides, #Ac_el, #Ac_des, #Th_el, #Th_des, #Pa_el, #Pa_des, #U_el, #U_des, #Np_el, #Np_des, #Pu_el, #Pu_des,
+          #Am_el, #Am_des, #Cm_el, #Cm_des, #Bk_el, #Bk_des, #Cf_el, #Cf_des, #Es_el, #Es_des, #Fm_el, #Fm_des, #Md_el, #Md_des,
+          #No_el, #No_des, #Lr_el, #Lr_des, #AC {
+            background-color: rgba(150, 40, 0, 1.0);
+        }
+    </style>
+
+    <style>
+        .el {
+            width: 140px;
+            transition: height 500ms;
+            height: 0px;
+            overflow: hidden;
+            position: absolute;
+            top: 186px;
+            left: 333px;
+        }
+        .des {
+            width: 380px;
+            transition: height 500ms;
+            height: 0px;
+            overflow: hidden;
+            position: absolute;
+            top: 186px;
+            left: 483px;
+        }
+    </style>
+
+    <style>
+        .Other_nonmetals:hover {
+            border-color: rgba(210, 210, 230, 1.0);
+            background-color: rgba(210, 210, 230, 1.0);
+            color: rgba(80, 100, 80, 1.0);
+            cursor: pointer;
+        }
+        .Alkali_metals:hover {
+            border-color: rgba(210, 210, 230, 1.0);
+            background-color: rgba(210, 210, 230, 1.0);
+            color: rgba(120, 20, 80, 1.0);
+            cursor: pointer;
+        }
+        .Alkaline_earth_metals:hover {
+            border-color: rgba(210, 210, 230, 1.0);
+            background-color: rgba(210, 210, 230, 1.0);
+            color: rgba(30, 50, 100, 1.0);
+            cursor: pointer;
+        }
+        .Transition_metals:hover {
+            border-color: rgba(210, 210, 230, 1.0) ;
+            background-color: rgba(210, 210, 230, 1.0);
+            color: rgba(150, 30, 30, 1.0);
+            cursor: pointer;
+        }
+        .Post-transition_metals:hover {
+            border-color: rgba(210, 210, 230, 1.0);
+            background-color: rgba(210, 210, 230, 1.0);
+            color: rgba(150, 20, 200, 1.0);
+            cursor: pointer;
+        }
+        .Metalloids:hover {
+            border-color: rgba(210, 210, 230, 1.0);
+            background-color: rgba(210, 210, 230, 1.0);
+            color: rgba(200, 70, 10, 1.0);
+            cursor: pointer;
+        }
+        .Halogens:hover {
+            border-color: rgba(210, 210, 230, 1.0);
+            background-color: rgba(210, 210, 230, 1.0);
+            color: rgba(10, 130, 160, 1.0);
+            cursor: pointer;
+        }
+        .Noble_gases:hover {
+            border-color: rgba(210, 210, 230, 1.0);
+            background-color: rgba(210, 210, 230, 1.0);
+            color: rgba(60, 120, 20, 1.0);
+            cursor: pointer;
+        }
+        .Lanthanides:hover {
+            border-color: rgba(210, 210, 230, 1.0);
+            background-color: rgba(210, 210, 230, 1.0);
+            color: rgba(140, 90, 30, 1.0);
+            cursor: pointer;
+        }
+        .Actinides:hover {
+            border-color: rgba(210, 210, 230, 1.0);
+            background-color: rgba(210, 210, 230, 1.0);
+            color: rgba(150, 40, 0, 1.0);
+            cursor: pointer;
+        }
+    </style>
+    <style>
+        .Z {
+            position: absolute;
+            left: 7px;
+            font-family: Calibri, Helvetica, Arial, Sans-serif;
+        }
+        .sym {
+            text-align: center;
+            font-size: 40px;
+            font-weight: 600;
+        }
+        .A {
+            position: absolute;
+            right: 5px;
+            bottom: 5px;
+            font-family: Calibri, Helvetica, Arial, Sans-serif;
+        }
+        .des_table {
+            display: inline-block;
+            padding: 2px 1px;
+            position: relative;
+            left: 25px;
+            top: 5px;
+            font-size: 12px;
+            color: rgba(250, 250, 250, 0.8);
+        }
+        .name {
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 0 0 2px 0;;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <p>Elements: The Periodic Table</p>
+    </header>
+<section>
+    <div class="Table">
+        <table>
+            <thead>
+            <tr>
+                <th id="col1">Groups → <br>↓ periods</th>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th>4</th>
+                <th>5</th>
+                <th>6</th>
+                <th>7</th>
+                <th>8</th>
+                <th>9</th>
+                <th>10</th>
+                <th>11</th>
+                <th>12</th>
+                <th>13</th>
+                <th>14</th>
+                <th>15</th>
+                <th>16</th>
+                <th>17</th>
+                <th>18</th>
+            </tr>
+
+            </thead>
+
+            <tbody>
+            <tr>
+                <td class="period">1</td>
+                <td class="Other_nonmetals" id="H" onmouseover="animate1(H_el, H_des)" onmouseout="animate2(H_el, H_des)">
+                    <p class="symbols"><span>1 </span>H</p>
+
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="Noble_gases" id="He" onmouseover="animate1(He_el, He_des)" onmouseout="animate2(He_el, He_des)">
+                    <p class="symbols"><span>2 </span>He</p>
+                </td>
+            </tr>
+            <tr>
+                <td class="period">2</td>
+                <td class="Alkali_metals" id="Li" onmouseover="animate1(Li_el, Li_des)" onmouseout="animate2(Li_el, Li_des)">
+                    <p class="symbols"><span>3 </span>Li</p>
+                </td>
+                <td class="Alkaline_earth_metals" onmouseover="animate1(Be_el, Be_des)" onmouseout="animate2(Be_el, Be_des)">
+                    <p class="symbols"><span>4 </span>Be</p>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="Metalloids" onmouseover="animate1(B_el, B_des)" onmouseout="animate2(B_el, B_des)"><p class="symbols"><span>5 </span>B</p></td>
+                <td class="Other_nonmetals" onmouseover="animate1(C_el, C_des)" onmouseout="animate2(C_el, C_des)"><p class="symbols"><span>6 </span>C</p></td>
+                <td class="Other_nonmetals" onmouseover="animate1(N_el, N_des)" onmouseout="animate2(N_el, N_des)"><p class="symbols"><span>7 </span>N</p></td>
+                <td class="Other_nonmetals" onmouseover="animate1(O_el, O_des)" onmouseout="animate2(O_el, O_des)"><p class="symbols"><span>8 </span>O</p></td>
+                <td class="Halogens" onmouseover="animate1(F_el, F_des)" onmouseout="animate2(F_el, F_des)"><p class="symbols"><span>9 </span>F</p></td>
+                <td class="Noble_gases" onmouseover="animate1(Ne_el, Ne_des)" onmouseout="animate2(Ne_el, Ne_des)"><p class="symbols"><span>10 </span>Ne</p></td>
+            </tr>
+            <tr>
+                <td class="period">3</td>
+                <td class="Alkali_metals" onmouseover="animate1(Na_el, Na_des)" onmouseout="animate2(Na_el, Na_des)"><p class="symbols"><span>11 </span>Na</p></td>
+                <td class="Alkaline_earth_metals" onmouseover="animate1(Mg_el, Mg_des)" onmouseout="animate2(Mg_el, Mg_des)"><p class="symbols"><span>12 </span>Mg</p></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="Post-transition_metals" onmouseover="animate1(Al_el, Al_des)" onmouseout="animate2(Al_el, Al_des)"><p class="symbols"><span>13 </span>Al</p></td>
+                <td class="Metalloids" onmouseover="animate1(Si_el, Si_des)" onmouseout="animate2(Si_el, Si_des)"><p class="symbols"><span>14 </span>Si</p></td>
+                <td class="Other_nonmetals" onmouseover="animate1(P_el, P_des)" onmouseout="animate2(P_el, P_des)"><p class="symbols"><span>15 </span>P</p></td>
+                <td class="Other_nonmetals" onmouseover="animate1(S_el, S_des)" onmouseout="animate2(S_el, S_des)"><p class="symbols"><span>16 </span>S</p></td>
+                <td class="Halogens" onmouseover="animate1(Cl_el, Cl_des)" onmouseout="animate2(Cl_el, Cl_des)"><p class="symbols"><span>17 </span>Cl</p></td>
+                <td class="Noble_gases" onmouseover="animate1(Ar_el, Ar_des)" onmouseout="animate2(Ar_el, Ar_des)"><p class="symbols"><span>18 </span>Ar</p></td>
+            </tr>
+            <tr>
+                <td class="period">4</td>
+                <td class="Alkali_metals" onmouseover="animate1(K_el, K_des)" onmouseout="animate2(K_el, K_des)"><p class="symbols"><span>19 </span>K</p></td>
+                <td class="Alkaline_earth_metals" onmouseover="animate1(Ca_el, Ca_des)" onmouseout="animate2(Ca_el, Ca_des)"><p class="symbols"><span>20 </span>Ca</p></td>
+                <td class="Transition_metals" onmouseover="animate1(Sc_el, Sc_des)" onmouseout="animate2(Sc_el, Sc_des)"><p class="symbols"><span>21 </span>Sc</p></td>
+                <td class="Transition_metals" onmouseover="animate1(Ti_el, Ti_des)" onmouseout="animate2(Ti_el, Ti_des)"><p class="symbols"><span>22 </span>Ti</p></td>
+                <td class="Transition_metals" onmouseover="animate1(V_el, V_des)" onmouseout="animate2(V_el, V_des)"><p class="symbols"><span>23 </span>V</p></td>
+                <td class="Transition_metals" onmouseover="animate1(Cr_el, Cr_des)" onmouseout="animate2(Cr_el, Cr_des)"><p class="symbols"><span>24 </span>Cr</p></td>
+                <td class="Transition_metals" onmouseover="animate1(Mn_el, Mn_des)" onmouseout="animate2(Mn_el, Mn_des)"><p class="symbols"><span>25 </span>Mn</p></td>
+                <td class="Transition_metals" onmouseover="animate1(Fe_el, Fe_des)" onmouseout="animate2(Fe_el, Fe_des)"><p class="symbols"><span>26 </span>Fe</p></td>
+                <td class="Transition_metals" onmouseover="animate1(Co_el, Co_des)" onmouseout="animate2(Co_el, Co_des)"><p class="symbols"><span>27 </span>Co</p></td>
+                <td class="Transition_metals" onmouseover="animate1(Ni_el, Ni_des)" onmouseout="animate2(Ni_el, Ni_des)"><p class="symbols"><span>28 </span>Ni</p></td>
+                <td class="Transition_metals" onmouseover="animate1(Cu_el, Cu_des)" onmouseout="animate2(Cu_el, Cu_des)"><p class="symbols"><span>29 </span>Cu</p></td>
+                <td class="Transition_metals" onmouseover="animate1(Zn_el, Zn_des)" onmouseout="animate2(Zn_el, Zn_des)"><p class="symbols"><span>30 </span>Zn</p></td>
+                <td class="Post-transition_metals" onmouseover="animate1(Ga_el, Ga_des)" onmouseout="animate2(Ga_el, Ga_des)"><p class="symbols"><span>31 </span>Ga</p></td>
+                <td class="Metalloids" onmouseover="animate1(Ge_el, Ge_des)" onmouseout="animate2(Ge_el, Ge_des)"><p class="symbols"><span>32 </span>Ge</p></td>
+                <td class="Metalloids" onmouseover="animate1(As_el, As_des)" onmouseout="animate2(As_el, As_des)"><p class="symbols"><span>33 </span>As</p></td>
+                <td class="Other_nonmetals" onmouseover="animate1(Se_el, Se_des)" onmouseout="animate2(Se_el, Se_des)"><p class="symbols"><span>34 </span>Se</p></td>
+                <td class="Halogens" onmouseover="animate1(Br_el, Br_des)" onmouseout="animate2(Br_el, Br_des)"><p class="symbols"><span>35 </span>Br</p></td>
+                <td class="Noble_gases" onmouseover="animate1(Kr_el, Kr_des)" onmouseout="animate2(Kr_el, Kr_des)"><p class="symbols"><span>36 </span>Kr</p></td>
+            </tr>
+            <tr>
+                <td class="period">5</td>
+                <td class="Alkali_metals" onmouseover="animate1(Rb_el, Rb_des)" onmouseout="animate2(Rb_el, Rb_des)"><p class="symbols"><span>37 </span>Rb</p></td>
+                <td class="Alkaline_earth_metals" onmouseover="animate1(Sr_el, Sr_des)" onmouseout="animate2(Sr_el, Sr_des)"><p class="symbols"><span>38 </span>Sr</p></td>
+                <td class="Transition_metals" onmouseover="animate1(Y_el, Y_des)" onmouseout="animate2(Y_el, Y_des)"><p class="symbols"><span>39 </span>Y</p></td>
+                <td class="Transition_metals" onmouseover="animate1(Zr_el, Zr_des)" onmouseout="animate2(Zr_el, Zr_des)"><p class="symbols"><span>40 </span>Zr</p></td>
+                <td class="Transition_metals" onmouseover="animate1(Nb_el, Nb_des)" onmouseout="animate2(Nb_el, Nb_des)"><p class="symbols"><span>41 </span>Nb</p></td>
+                <td class="Transition_metals" onmouseover="animate1(Mo_el, Mo_des)" onmouseout="animate2(Mo_el, Mo_des)"><p class="symbols"><span>42 </span>Mo</p></td>
+                <td class="Transition_metals" onmouseover="animate1(Tc_el, Tc_des)" onmouseout="animate2(Tc_el, Tc_des)"><p class="symbols"><span>43 </span>Tc</p></td>
+                <td class="Transition_metals" onmouseover="animate1(Ru_el, Ru_des)" onmouseout="animate2(Ru_el, Ru_des)"><p class="symbols"><span>44 </span>Ru</p></td>
+                <td class="Transition_metals" onmouseover="animate1(Rh_el, Rh_des)" onmouseout="animate2(Rh_el, Rh_des)"><p class="symbols"><span>45 </span>Rh</p></td>
+                <td class="Transition_metals" onmouseover="animate1(Pd_el, Pd_des)" onmouseout="animate2(Pd_el, Pd_des)"><p class="symbols"><span>46 </span>Pd</p></td>
+                <td class="Transition_metals" onmouseover="animate1(Ag_el, Ag_des)" onmouseout="animate2(Ag_el, Ag_des)"><p class="symbols"><span>47 </span>Ag</p></td>
+                <td class="Transition_metals" onmouseover="animate1(Cd_el, Cd_des)" onmouseout="animate2(Cd_el, Cd_des)"><p class="symbols"><span>48 </span>Cd</p></td>
+                <td class="Post-transition_metals" onmouseover="animate1(In_el, In_des)" onmouseout="animate2(In_el, In_des)"><p class="symbols"><span>49 </span>In</p></td>
+                <td class="Post-transition_metals" onmouseover="animate1(Sn_el, Sn_des)" onmouseout="animate2(Sn_el, Sn_des)"><p class="symbols"><span>50 </span>Sn</p></td>
+                <td class="Metalloids" onmouseover="animate1(Sb_el, Sb_des)" onmouseout="animate2(Sb_el, Sb_des)"><p class="symbols"><span>51 </span>Sb</p></td>
+                <td class="Metalloids" onmouseover="animate1(Te_el, Te_des)" onmouseout="animate2(Te_el, Te_des)"><p class="symbols"><span>52 </span>Te</p></td>
+                <td class="Halogens" onmouseover="animate1(I_el, I_des)" onmouseout="animate2(I_el, I_des)"><p class="symbols"><span>53 </span>I</p></td>
+                <td class="Noble_gases" onmouseover="animate1(Xe_el, Xe_des)" onmouseout="animate2(Xe_el, Xe_des)"><p class="symbols"><span>54 </span>Xe</p></td>
+            </tr>
+            <tr>
+                <td class="period">6</td>
+                <td class="Alkali_metals" onmouseover="animate1(Cs_el, Cs_des)" onmouseout="animate2(Cs_el, Cs_des)"><p class="symbols"><span>55 </span>Cs</p></td>
+                <td class="Alkaline_earth_metals" onmouseover="animate1(Ba_el, Ba_des)" onmouseout="animate2(Ba_el, Ba_des)"><p class="symbols"><span>56 </span>Ba</p></td>
+                <td class="OutOfTable"><p class="symbols"><span></span>*</p></td>
+                <td class="Transition_metals" onmouseover="animate1(Hf_el, Hf_des)" onmouseout="animate2(Hf_el, Hf_des)"><p class="symbols"><span>72 </span>Hf</p></td>
+                <td class="Transition_metals" onmouseover="animate1(Ta_el, Ta_des)" onmouseout="animate2(Ta_el, Ta_des)"><p class="symbols"><span>73 </span>Ta</p></td>
+                <td class="Transition_metals" onmouseover="animate1(W_el, W_des)" onmouseout="animate2(W_el, W_des)"><p class="symbols"><span>74 </span>W</p></td>
+                <td class="Transition_metals" onmouseover="animate1(Re_el, Re_des)" onmouseout="animate2(Re_el, Re_des)"><p class="symbols"><span>75 </span>Re</p></td>
+                <td class="Transition_metals" onmouseover="animate1(Os_el, Os_des)" onmouseout="animate2(Os_el, Os_des)"><p class="symbols"><span>76 </span>Os</p></td>
+                <td class="Transition_metals" onmouseover="animate1(Ir_el, Ir_des)" onmouseout="animate2(Ir_el, Ir_des)"><p class="symbols"><span>77 </span>Ir</p></td>
+                <td class="Transition_metals" onmouseover="animate1(Pt_el, Pt_des)" onmouseout="animate2(Pt_el, Pt_des)"><p class="symbols"><span>78 </span>Pt</p></td>
+                <td class="Transition_metals" onmouseover="animate1(Au_el, Au_des)" onmouseout="animate2(Au_el, Au_des)"><p class="symbols"><span>79 </span>Au</p></td>
+                <td class="Transition_metals" onmouseover="animate1(Hg_el, Hg_des)" onmouseout="animate2(Hg_el, HG_des)"><p class="symbols"><span>80 </span>Hg</p></td>
+                <td class="Post-transition_metals" onmouseover="animate1(Tl_el, Tl_des)" onmouseout="animate2(Tl_el, Tl_des)"><p class="symbols"><span>81 </span>Tl</p></td>
+                <td class="Post-transition_metals" onmouseover="animate1(Pb_el, Pb_des)" onmouseout="animate2(Pb_el, Pb_des)"><p class="symbols"><span>82 </span>Pb</p></td>
+                <td class="Post-transition_metals" onmouseover="animate1(Bi_el, Bi_des)" onmouseout="animate2(Bi_el, Bi_des)"><p class="symbols"><span>83 </span>Pi</p></td>
+                <td class="Metalloids" onmouseover="animate1(Po_el, Po_des)" onmouseout="animate2(Po_el, Po_des)"><p class="symbols"><span>84 </span>Po</p></td>
+                <td class="Halogens" onmouseover="animate1(At_el, At_des)" onmouseout="animate2(At_el, At_des)"><p class="symbols"><span>85 </span>At</p></td>
+                <td class="Noble_gases" onmouseover="animate1(Rn_el, Rn_des)" onmouseout="animate2(Rn_el, Rn_des)"><p class="symbols"><span>86 </span>Rn</p></td>
+            </tr>
+            <tr>
+                <td class="period">7</td>
+                <td class="Alkali_metals" onmouseover="animate1(Fr_el, Fr_des)" onmouseout="animate2(Fr_el, Fr_des)"><p class="symbols"><span>87 </span>Fr</p></td>
+                <td class="Alkaline_earth_metals" onmouseover="animate1(Ra_el, Ra_des)" onmouseout="animate2(Ra_el, Ra_des)"><p class="symbols"><span>88 </span>Ra</p></td>
+                <td class="OutOfTable"><p class="symbols"><span></span>**</p></td>
+                <td class="Transition_metals" onmouseover="animate1(Rf_el, Rf_des)" onmouseout="animate2(Rf_el, Rf_des)"><p class="symbols"><span>104 </span>Rf</p></td>
+                <td class="Transition_metals" onmouseover="animate1(Db_el, Db_des)" onmouseout="animate2(Db_el, Db_des)"><p class="symbols"><span>105 </span>Db</p></td>
+                <td class="Transition_metals" onmouseover="animate1(Sg_el, Sg_des)" onmouseout="animate2(Sg_el, Sg_des)"><p class="symbols"><span>106 </span>Sg</p></td>
+                <td class="Transition_metals" onmouseover="animate1(Bh_el, Bh_des)" onmouseout="animate2(Bh_el, Bh_des)"><p class="symbols"><span>107 </span>Bh</p></td>
+                <td class="Transition_metals" onmouseover="animate1(Hs_el, Hs_des)" onmouseout="animate2(Hs_el, Hs_des)"><p class="symbols"><span>108 </span>Hs</p></td>
+                <td class="Transition_metals" onmouseover="animate1(Mt_el, Mt_des)" onmouseout="animate2(Mt_el, Mt_des)"><p class="symbols"><span>109 </span>Mt</p></td>
+                <td class="Transition_metals" onmouseover="animate1(Ds_el, Ds_des)" onmouseout="animate2(Ds_el, Ds_des)"><p class="symbols"><span>110 </span>Ds</p></td>
+                <td class="Transition_metals" onmouseover="animate1(Rg_el, Rg_des)" onmouseout="animate2(Rg_el, Rg_des)"><p class="symbols"><span>111 </span>Rg</p></td>
+                <td class="Transition_metals" onmouseover="animate1(Cn_el, Cn_des)" onmouseout="animate2(Cn_el, Cn_des)"><p class="symbols"><span>112 </span>Cn</p></td>
+                <td class="Post-transition_metals" onmouseover="animate1(Nh_el, Nh_des)" onmouseout="animate2(Nh_el, Nh_des)"><p class="symbols"><span>113 </span>NH</p></td>
+                <td class="Post-transition_metals" onmouseover="animate1(Fl_el, Fl_des)" onmouseout="animate2(Fl_el, Fl_des)"><p class="symbols"><span>114 </span>Fl</p></td>
+                <td class="Post-transition_metals" onmouseover="animate1(Mc_el, Mc_des)" onmouseout="animate2(Mc_el, Mc_des)"><p class="symbols"><span>115 </span>Mc</p></td>
+                <td class="Post-transition_metals" onmouseover="animate1(Lv_el, Lv_des)" onmouseout="animate2(Lv_el, Lv_des)"><p class="symbols"><span>116 </span>Lv</p></td>
+                <td class="Halogens" onmouseover="animate1(Ts_el, Ts_des)" onmouseout="animate2(Ts_el, Ts_des)"><p class="symbols"><span>117 </span>Ts</p></td>
+                <td class="Noble_gases" onmouseover="animate1(Og_el, Og_des)" onmouseout="animate2(Og_el, Og_des)"><p class="symbols"><span>118 </span>Og</p></td>
+            </tr>
+
+            </tbody>
+        </table>
+
+        <table id="lower_table">
+            <tr>
+                <td></td>
+                <td class="text">* Lanthanides  </td>
+                <td class="Lanthanides" onmouseover="animate1(La_el, La_des)" onmouseout="animate2(La_el, La_des)"><p class="symbols"><span>57 </span>La</p></td>
+                <td class="Lanthanides" onmouseover="animate1(Ce_el, Ce_des)" onmouseout="animate2(Ce_el, Ce_des)"><p class="symbols"><span>58 </span>Ce</p></td>
+                <td class="Lanthanides" onmouseover="animate1(Pr_el, Pr_des)" onmouseout="animate2(Pr_el, Pr_des)"><p class="symbols"><span>59 </span>Pr</p></td>
+                <td class="Lanthanides" onmouseover="animate1(Nd_el, Nd_des)" onmouseout="animate2(Nd_el, Nd_des)"><p class="symbols"><span>60 </span>Nd</p></td>
+                <td class="Lanthanides" onmouseover="animate1(Pm_el, Pm_des)" onmouseout="animate2(Pm_el, Pm_des)"><p class="symbols"><span>61 </span>Pm</p></td>
+                <td class="Lanthanides" onmouseover="animate1(Sm_el, Sm_des)" onmouseout="animate2(Sm_el, Sm_des)"><p class="symbols"><span>62 </span>Sm</p></td>
+                <td class="Lanthanides" onmouseover="animate1(Eu_el, Eu_des)" onmouseout="animate2(Eu_el, Eu_des)"><p class="symbols"><span>63 </span>Eu</p></td>
+                <td class="Lanthanides" onmouseover="animate1(Gd_el, Gd_des)" onmouseout="animate2(Gd_el, Gd_des)"><p class="symbols"><span>64 </span>Gd</p></td>
+                <td class="Lanthanides" onmouseover="animate1(Tb_el, Tb_des)" onmouseout="animate2(Tb_el, Tb_des)"><p class="symbols"><span>65 </span>Tb</p></td>
+                <td class="Lanthanides" onmouseover="animate1(Dy_el, Dy_des)" onmouseout="animate2(Dy_el, Dy_des)"><p class="symbols"><span>67 </span>Dy</p></td>
+                <td class="Lanthanides" onmouseover="animate1(Ho_el, Ho_des)" onmouseout="animate2(Ho_el, Ho_des)"><p class="symbols"><span>68 </span>Ho</p></td>
+                <td class="Lanthanides" onmouseover="animate1(Er_el, Er_des)" onmouseout="animate2(Er_el, Er_des)"><p class="symbols"><span>69 </span>Er</p></td>
+                <td class="Lanthanides" onmouseover="animate1(Tm_el, Tm_des)" onmouseout="animate2(Tm_el, Tm_des)"><p class="symbols"><span>70 </span>Tm</p></td>
+                <td class="Lanthanides" onmouseover="animate1(Yb_el, Yb_des)" onmouseout="animate2(Yb_el, Yb_des)"><p class="symbols"><span>71 </span>Yb</p></td>
+                <td class="Lanthanides" onmouseover="animate1(Lu_el, Lu_des)" onmouseout="animate2(Lu_el, Lu_des)"><p class="symbols"><span>72 </span>Lu</p></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="text">** Actinides</td>
+                <td class="Actinides" onmouseover="animate1(Ac_el, Ac_des)" onmouseout="animate2(Ac_el, Ac_des)"><p class="symbols"><span>89 </span>Ac</p></td>
+                <td class="Actinides" onmouseover="animate1(Th_el, Th_des)" onmouseout="animate2(Th_el, Th_des)"><p class="symbols"><span>90 </span>Th</p></td>
+                <td class="Actinides" onmouseover="animate1(Pa_el, Pa_des)" onmouseout="animate2(Pa_el, Pa_des)"><p class="symbols"><span>91 </span>Pa</p></td>
+                <td class="Actinides" onmouseover="animate1(U_el, U_des)" onmouseout="animate2(U_el, U_des)"><p class="symbols"><span>92 </span>U</p></td>
+                <td class="Actinides" onmouseover="animate1(Np_el, Np_des)" onmouseout="animate2(Np_el, Np_des)"><p class="symbols"><span>93 </span>Np</p></td>
+                <td class="Actinides" onmouseover="animate1(Pu_el, Pu_des)" onmouseout="animate2(Pu_el, Pu_des)"><p class="symbols"><span>94 </span>Pu</p></td>
+                <td class="Actinides" onmouseover="animate1(Am_el, Am_des)" onmouseout="animate2(Am_el, Am_des)"><p class="symbols"><span>95 </span>Am</p></td>
+                <td class="Actinides" onmouseover="animate1(Cm_el, Cm_des)" onmouseout="animate2(Cm_el, Cm_des)"><p class="symbols"><span>96 </span>Cm</p></td>
+                <td class="Actinides" onmouseover="animate1(Bk_el, Bk_des)" onmouseout="animate2(Bk_el, Bk_des)"><p class="symbols"><span>97 </span>Bk</p></td>
+                <td class="Actinides" onmouseover="animate1(Cf_el, Cf_des)" onmouseout="animate2(Cf_el, Cf_des)"><p class="symbols"><span>98 </span>Cf</p></td>
+                <td class="Actinides" onmouseover="animate1(Es_el, Es_des)" onmouseout="animate2(Es_el, Es_des)"><p class="symbols"><span>99 </span>Es</p></td>
+                <td class="Actinides" onmouseover="animate1(Fm_el, Fm_des)" onmouseout="animate2(Fm_el, Fm_des)"><p class="symbols"><span>100 </span>Fm</p></td>
+                <td class="Actinides" onmouseover="animate1(Md_el, Md_des)" onmouseout="animate2(Md_el, Md_des)"><p class="symbols"><span>101 </span>Md</p></td>
+                <td class="Actinides" onmouseover="animate1(No_el, No_des)" onmouseout="animate2(No_el, No_des)"><p class="symbols"><span>102 </span>No</p></td>
+                <td class="Actinides" onmouseover="animate1(Lr_el, Lr_des)" onmouseout="animate2(Lr_el, Lr_des)"><p class="symbols"><span>103 </span>Lr</p></td>
+            </tr>
+        </table>
+
+        <table id="foo">
+            <tr>
+                <td id="AM" onmouseover="select(AM, 'Alkali_metals')" onmouseout="unSelect()">Alkali metals</td>
+                <td id="AEM" onmouseover="select(AEM, 'Alkaline_earth_metals')" onmouseout="unSelect()">Alkaline earth metals</td>
+                <td id="TM" onmouseover="select(TM, 'Transition_metals')" onmouseout="unSelect()">Transition metals</td>
+                <td id="PM" onmouseover="select(PM, 'Post-transition_metals')" onmouseout="unSelect()">Post-transition metals</td>
+                <td id="ON" onmouseover="select(ON, 'Other_nonmetals')" onmouseout="unSelect()">Other nonmetals</td>
+                <td id="ME" onmouseover="select(ME, 'Metalloids')" onmouseout="unSelect()">Metalloids</td>
+                <td id="HA" onmouseover="select(HA, 'Halogens')" onmouseout="unSelect()">Halogens</td>
+                <td id="NG" onmouseover="select(NG, 'Noble_gases')" onmouseout="unSelect()">Noble gases</td>
+                <td id="LA" onmouseover="select(LA, 'Lanthanides')" onmouseout="unSelect()">Lanthanides</td>
+                <td id="AC" onmouseover="select(AC, 'Actinides')" onmouseout="unSelect()">Actinides</td>
+            </tr>
+        </table>
+    </div>
+
+    <div>
+
+    </div>
+</section>
+<section class="bars">
+    <div>
+        <div class="el" id="H_el">
+            <p class="Z">1</p>
+            <p class="sym">H</p>
+            <p class="A">1.00794</p>
+        </div>
+        <div class="des" id="H_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">HYDROGEN</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1766</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>14.01 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>20.28 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>1s<span style="vertical-align:super">1</span></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div>
+        <div class="el" id="He_el">
+            <p class="Z">2</p>
+            <p class="sym">He</p>
+            <p class="A">4.002602</p>
+        </div>
+        <div class="des" id="He_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">HELIUM</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1868</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>0.95 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>4.22 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>1s<span style="vertical-align:super">2</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+    <div>
+        <div class="el" id="Li_el">
+            <p class="Z">3</p>
+            <p class="sym">Li</p>
+            <p class="A">6.941</p>
+        </div>
+        <div class="des" id="Li_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">LITHIUM</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1817</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>453.69 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>1615.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 1</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[He] 2s<span style="vertical-align:super">1</span></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div>
+        <div class="el" id="Be_el">
+            <p class="Z">4</p>
+            <p class="sym">Be</p>
+            <p class="A">9.012182</p>
+        </div>
+        <div class="des" id="Be_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">BERYLLIUM</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1798</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>1560.15 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>2742.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 2</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[He] 2s<span style="vertical-align:super">2</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+    <div>
+        <div class="el" id="B_el">
+            <p class="Z">5</p>
+            <p class="sym">B</p>
+            <p class="A">10.811</p>
+        </div>
+        <div class="des" id="B_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">BORON</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1808</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>2349.15 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>4200.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 3</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[He] 2s<span style="vertical-align:super">2</span> 2p<span style="Vertical-align:super">1</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+    <div>
+        <div class="el" id="C_el">
+            <p class="Z">6</p>
+            <p class="sym">C</p>
+            <p class="A">12.0107</p>
+        </div>
+        <div class="des" id="C_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">CARBON</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>3750 BC</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>3948.15 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>4300.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 4</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[He] 2s<span style="vertical-align:super">2</span> 2p<span style="vertical-align:super">2</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+    <div>
+        <div class="el" id="N_el">
+            <p class="Z">7</p>
+            <p class="sym">N</p>
+            <p class="A">14.0067</p>
+        </div>
+        <div class="des" id="N_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">NITROGEN</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1772</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>63.15 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>77.36 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 5</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[He] 2s<span style="vertical-align:super">2</span> 2p<span style="vertical-align:super">3</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+    <div>
+        <div class="el" id="O_el">
+            <p class="Z">8</p>
+            <p class="sym">O</p>
+            <p class="A">15.9994</p>
+        </div>
+        <div class="des" id="O_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">OXYGEN</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1771</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>54.36 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>90.20 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 6</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[He] 2s<span style="vertical-align:super">2</span> 2p<span style="vertical-align:super">4</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+    <div>
+        <div class="el" id="F_el">
+            <p class="Z">9</p>
+            <p class="sym">F</p>
+            <p class="A">18.9984</p>
+        </div>
+        <div class="des" id="F_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">FLUORINE</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1810</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>53.53 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>85.03 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 7</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[He] 2s<span style="vertical-align:super">2</span> 2p<span style="vertical-align:super">5</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+    <div>
+        <div class="el" id="Ne_el">
+            <p class="Z">10</p>
+            <p class="sym">Ne</p>
+            <p class="A">20.1797</p>
+        </div>
+        <div class="des" id="Ne_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">NEON</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1898</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>24.56 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>27.07 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[He] 2s<span style="vertical-align:super">2</span> 2p<span style="vertical-align:super">6</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+    <div>
+        <div class="el" id="Na_el">
+            <p class="Z">11</p>
+            <p class="sym">Na</p>
+            <p class="A">22.9898</p>
+        </div>
+        <div class="des" id="Na_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">SODIUM</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1807</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>370.87 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>1156.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 1</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Ne] 3s<span style="vertical-align:super">1</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Mg_el">
+            <p class="Z">12</p>
+            <p class="sym">Mg</p>
+            <p class="A">24.305</p>
+        </div>
+        <div class="des" id="Mg_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">MAGNESIUM</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1755</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>923.15 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>1363.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 2</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Ne] 3s<span style="vertical-align:super">2</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Al_el">
+            <p class="Z">13</p>
+            <p class="sym">Al</p>
+            <p class="A">26.9815</p>
+        </div>
+        <div class="des" id="Al_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">ALUMINIUM</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1825</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>933.47 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>2792.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 3</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Ne] 3s<span style="vertical-align:super">2</span> 3p<span style="vertical-align:super">1</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+    <div>
+        <div class="el" id="Si_el">
+            <p class="Z">14</p>
+            <p class="sym">Si</p>
+            <p class="A">28.0855</p>
+        </div>
+        <div class="des" id="Si_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">SILICON</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1824</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>1687.15 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>3538.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 4</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Ne] 3s<span style="vertical-align:super">2</span> 3p<span style="vertical-align:super">2</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="P_el">
+            <p class="Z">15</p>
+            <p class="sym">P</p>
+            <p class="A">30.9738</p>
+        </div>
+        <div class="des" id="P_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">PHOSPHORUS</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1669</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>317.25 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>553.00 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 5</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Ne] 3s<span style="vertical-align:super">2</span> 3p<span style="vertical-align:super">3</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="S_el">
+            <p class="Z">16</p>
+            <p class="sym">S</p>
+            <p class="A">32.065</p>
+        </div>
+        <div class="des" id="S_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">SULFUR</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>500 BC</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>388.36 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>717.80 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 6</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Ne] 3s<span style="vertical-align:super">2</span> 3p<span style="vertical-align:super">4</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Cl_el">
+            <p class="Z">17</p>
+            <p class="sym">Cl</p>
+            <p class="A">35.453</p>
+        </div>
+        <div class="des" id="Cl_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">CHLORINE</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1774</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>171.65 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>239.11 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 7</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Ne] 3s<span style="vertical-align:super">2</span> 3p<span style="vertical-align:super">5</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ar_el">
+            <p class="Z">18</p>
+            <p class="sym">Ar</p>
+            <p class="A">39.948</p>
+        </div>
+        <div class="des" id="Ar_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">ARGON</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1894</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>83.80 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>87.30 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 8</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Ne] 3s<span style="vertical-align:super">2</span> 3p<span style="vertical-align:super">6</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="K_el">
+            <p class="Z">19</p>
+            <p class="sym">K</p>
+            <p class="A">39.0983</p>
+        </div>
+        <div class="des" id="K_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">POTASSIUM</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1807</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>336.53 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>1032.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 8, 1</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Ar] 4s<span style="vertical-align:super">1</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ca_el">
+            <p class="Z">20</p>
+            <p class="sym">Ca</p>
+            <p class="A">40.078</p>
+        </div>
+        <div class="des" id="Ca_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">CALCIUM</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1808</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>1115.15 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>1757.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 8, 2</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Ar] 4s<span style="vertical-align:super">2</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Sc_el">
+            <p class="Z">21</p>
+            <p class="sym">Sc</p>
+            <p class="A">44.9559</p>
+        </div>
+        <div class="des" id="Sc_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">SCANDIUM</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1879</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>1814.15 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>3109.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 9, 2</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Ar] 3d<span style="vertical-align:super">1</span> 4s<span style="vertical-align:super">2</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ti_el">
+            <p class="Z">22</p>
+            <p class="sym">Ti</p>
+            <p class="A">47.867</p>
+        </div>
+        <div class="des" id="Ti_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">TITANIUM</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1791</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>1941.15 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>3560.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 10, 2</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Ar] 3d<span style="vertical-align:super">2</span> 4s<span style="vertical-align:super">2</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="V_el">
+            <p class="Z">23</p>
+            <p class="sym">V</p>
+            <p class="A">50.9415</p>
+        </div>
+        <div class="des" id="V_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">VANADIUM</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1801</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>2183.15 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>3680.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 11, 2</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Ar] 3d<span style="vertical-align:super">3</span> 4s<span style="vertical-align:super">2</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Cr_el">
+            <p class="Z">24</p>
+            <p class="sym">Cr</p>
+            <p class="A">51.9961</p>
+        </div>
+        <div class="des" id="Cr_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">CHROMIUM</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1797</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>2180.15 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>2944.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 13, 1</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Ar] 3d<span style="vertical-align:super">5</span> 4s<span style="vertical-align:super">1</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Mn_el">
+            <p class="Z">25</p>
+            <p class="sym">Mn</p>
+            <p class="A">54.9381</p>
+        </div>
+        <div class="des" id="Mn_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">MANGANESE</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1774</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>1519.15 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>2334.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 13, 2</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Ar] 3d<span style="vertical-align:super">5</span> 4s<span style="vertical-align:super">2</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Fe_el">
+            <p class="Z">26</p>
+            <p class="sym">Fe</p>
+            <p class="A">55.8454</p>
+        </div>
+        <div class="des" id="Fe_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">IRON</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>2000 BC</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>1811.15 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>3134.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 14, 2</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Ar] 3d<span style="vertical-align:super">6</span> 4s<span style="vertical-align:super">2</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Co_el">
+            <p class="Z">27</p>
+            <p class="sym">Co</p>
+            <p class="A">58.9332</p>
+        </div>
+        <div class="des" id="Co_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">COBALT</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1735</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>1768.15 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>3200.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 15, 2</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Ar] 3d<span style="vertical-align:super">7</span> 4s<span style="vertical-align:super">2</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ni_el">
+            <p class="Z">28</p>
+            <p class="sym">Ni</p>
+            <p class="A">58.6934</p>
+        </div>
+        <div class="des" id="Ni_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">NICKEL</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1751</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>1728.15 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>3186.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 16, 2</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Ar] 3d<span style="vertical-align:super">8</span> 4s<span style="vertical-align:super">2</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Cu_el">
+            <p class="Z">29</p>
+            <p class="sym">Cu</p>
+            <p class="A">63.546</p>
+        </div>
+        <div class="des" id="Cu_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">COPPER</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>8000 BC</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>1357.75 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>2835.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 18, 1</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Ar] 3d<span style="vertical-align:super">10</span> 4s<span style="vertical-align:super">1</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Zn_el">
+            <p class="Z">30</p>
+            <p class="sym">Zn</p>
+            <p class="A">65.38</p>
+        </div>
+        <div class="des" id="Zn_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">ZINC</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1000 BC</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>692.68 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>1180.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 18, 2</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Ar] 3d<span style="vertical-align:super">10</span> 4s<span style="vertical-align:super">2</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ga_el">
+            <p class="Z">31</p>
+            <p class="sym">Ga</p>
+            <p class="A">69.723</p>
+        </div>
+        <div class="des" id="Ga_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">GALLIUM</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1875</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>302.91 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>2477.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 18, 3</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Ar] 3d<span style="vertical-align:super">10</span> 4s<span style="vertical-align:super">2</span> 4p<span style="vertical-align:super">1</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ge_el">
+            <p class="Z">32</p>
+            <p class="sym">Ge</p>
+            <p class="A">72.63</p>
+        </div>
+        <div class="des" id="Ge_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">GERMANIUM</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1886</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>1211.40 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>3106.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 18, 4</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Ar] 3d<span style="vertical-align:super">10</span> 4s<span style="vertical-align:super">2</span> 4p<span style="vertical-align:super">2</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="As_el">
+            <p class="Z">33</p>
+            <p class="sym">As</p>
+            <p class="A">74.9216</p>
+        </div>
+        <div class="des" id="As_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">ARSENIC</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>2500 BC</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>1090.15 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>876.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 18, 5</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Ar] 3d<span style="vertical-align:super">10</span> 4s<span style="vertical-align:super">2</span> 4p<span style="vertical-align:super">3</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Se_el">
+            <p class="Z">34</p>
+            <p class="sym">Se</p>
+            <p class="A">78.96</p>
+        </div>
+        <div class="des" id="Se_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">SELENIUM</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1817</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>494.15 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>958.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 18, 6</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Ar] 3d<span style="vertical-align:super">10</span> 4s<span style="vertical-align:super">2</span> 4p<span style="vertical-align:super">4</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Br_el">
+            <p class="Z">35</p>
+            <p class="sym">Br</p>
+            <p class="A">79.904</p>
+        </div>
+        <div class="des" id="Br_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">BROMINE</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1825</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>265.95 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>331.95 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 18, 7</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Ar] 3d<span style="vertical-align:super">10</span> 4s<span style="vertical-align:super">2</span> 4p<span style="vertical-align:super">5</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Kr_el">
+            <p class="Z">36</p>
+            <p class="sym">Kr</p>
+            <p class="A">83.798</p>
+        </div>
+        <div class="des" id="Kr_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">KRYPTON</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1898</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>115.79 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>119.93 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 18, 8</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Ar] 3d<span style="vertical-align:super">10</span> 4s<span style="vertical-align:super">2</span> 4p<span style="vertical-align:super">6</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Rb_el">
+            <p class="Z">37</p>
+            <p class="sym">Rb</p>
+            <p class="A">85.4678</p>
+        </div>
+        <div class="des" id="Rb_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">RUBIDIUM</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1861</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>312.46 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>961.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 18, 8, 1</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Kr] 5s<span style="vertical-align:super">1</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Sr_el">
+            <p class="Z">38</p>
+            <p class="sym">Sr</p>
+            <p class="A">87.62</p>
+        </div>
+        <div class="des" id="Sr_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">STRONTIUM</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1790</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>1050.15 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>1655.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 18, 8, 2</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Kr] 5s<span style="vertical-align:super">2</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Y_el">
+            <p class="Z">39</p>
+            <p class="sym">Y</p>
+            <p class="A">88.9059</p>
+        </div>
+        <div class="des" id="Y_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">YTTRIUM</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1794</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>1799.15 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>3609.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 18, 9, 2</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Kr] 4d<span style="vertical-align:super">1</span> 5s<span style="vertical-align:super">2</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Zr_el">
+            <p class="Z">40</p>
+            <p class="sym">Zr</p>
+            <p class="A">91.224</p>
+        </div>
+        <div class="des" id="Zr_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">ZIRCONIUM</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1789</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>2128.15 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>4682.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 18, 10, 2</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Kr] 4d<span style="vertical-align:super">2</span> 5s<span style="vertical-align:super">2</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Nb_el">
+            <p class="Z">41</p>
+            <p class="sym">Nb</p>
+            <p class="A">92.9064</p>
+        </div>
+        <div class="des" id="Nb_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">NIOBIUM</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1801</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>2750.15 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>5017.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 18, 12, 1</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Kr] 4d<span style="vertical-align:super">4</span> 5s<span style="vertical-align:super">1</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Mo_el">
+            <p class="Z">42</p>
+            <p class="sym">Mo</p>
+            <p class="A">95.96</p>
+        </div>
+        <div class="des" id="Mo_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">MOLYBDENUM</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1778</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>2896.15 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>4912.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 18, 13, 1</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Kr] 4d<span style="vertical-align:super">5</span> 5s<span style="vertical-align:super">1</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Tc_el">
+            <p class="Z">43</p>
+            <p class="sym">Tc</p>
+            <p class="A">98</p>
+        </div>
+        <div class="des" id="Tc_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">TECHNETIUM</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1937</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>2430.15 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>4538.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 18, 13, 2</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Kr] 4d<span style="vertical-align:super">5</span> 5s<span style="vertical-align:super">2</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ru_el">
+            <p class="Z">44</p>
+            <p class="sym">Ru</p>
+            <p class="A">101.07</p>
+        </div>
+        <div class="des" id="Ru_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">RUTHENIUM</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1844</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>2607.15 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>4423.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 18, 15, 1</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Kr] 4d<span style="vertical-align:super">7</span> 5s<span style="vertical-align:super">1</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Rh_el">
+            <p class="Z">45</p>
+            <p class="sym">Rh</p>
+            <p class="A">102.9055</p>
+        </div>
+        <div class="des" id="Rh_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">RHODIUM</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1803</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>2237.15 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>3968.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 18, 16, 1</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Kr] 4d<span style="vertical-align:super">8</span> 5s<span style="vertical-align:super">1</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Pd_el">
+            <p class="Z">46</p>
+            <p class="sym">Pd</p>
+            <p class="A">106.42</p>
+        </div>
+        <div class="des" id="Pd_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">PALLADIUM</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1803</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>1828.05 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>3236.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 18, 18</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Kr] 4d<span style="vertical-align:super">10</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ag_el">
+            <p class="Z">47</p>
+            <p class="sym">Ag</p>
+            <p class="A">107.8682</p>
+        </div>
+        <div class="des" id="Ag_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">SILVER</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>3000 BC</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>1234.93 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>2435.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 18, 18, 1</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Kr] 4d<span style="vertical-align:super">10</span> 5s<span style="vertical-align:super">1</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Cd_el">
+            <p class="Z">48</p>
+            <p class="sym">Cd</p>
+            <p class="A">112.411</p>
+        </div>
+        <div class="des" id="Cd_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">CADMIUM</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1817</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>594.22 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>1040.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 18, 18, 2</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Kr] 4d<span style="vertical-align:super">10</span> 5s<span style="vertical-align:super">2</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="In_el">
+            <p class="Z">49</p>
+            <p class="sym">In</p>
+            <p class="A">114.818</p>
+        </div>
+        <div class="des" id="In_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">INDIUM</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1864</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>429.75 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>2345.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 18, 18, 3</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Kr] 4d<span style="vertical-align:super">10</span> 5s<span style="vertical-align:super">2</span> 5p<span style="vertical-align:super">1</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Sn_el">
+            <p class="Z">50</p>
+            <p class="sym">Sn</p>
+            <p class="A">118.71</p>
+        </div>
+        <div class="des" id="Sn_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">TIN</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>3000 BC</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>505.08 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>2875.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 18, 18, 4</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Kr] 4d<span style="vertical-align:super">10</span> 5s<span style="vertical-align:super">2</span> 5p<span style="vertical-align:super">2</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Sb_el">
+            <p class="Z">51</p>
+            <p class="sym">Sb</p>
+            <p class="A">121.76</p>
+        </div>
+        <div class="des" id="Sb_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">ANTIMONY</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>3000 BC</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>903.78 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>1860.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 18, 18, 5</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Kr] 4d<span style="vertical-align:super">10</span> 5s<span style="vertical-align:super">2</span> 5p<span style="vertical-align:super">3</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Te_el">
+            <p class="Z">52</p>
+            <p class="sym">Te</p>
+            <p class="A">127.60</p>
+        </div>
+        <div class="des" id="Te_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">TELLURIUM</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1782</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>722.66 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>1261.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 18, 18, 6</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Kr] 4d<span style="vertical-align:super">10</span> 5s<span style="vertical-align:super">2</span> 5p<span style="vertical-align:super">4</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="I_el">
+            <p class="Z">53</p>
+            <p class="sym">I</p>
+            <p class="A">126.9045</p>
+        </div>
+        <div class="des" id="I_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">IODINE</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1811</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>386.85 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>457.40 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 18, 18, 7</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Kr] 4d<span style="vertical-align:super">10</span> 5s<span style="vertical-align:super">2</span> 5p<span style="vertical-align:super">5</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Xe_el">
+            <p class="Z">54</p>
+            <p class="sym">Xe</p>
+            <p class="A">131.293</p>
+        </div>
+        <div class="des" id="Xe_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">XENON</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1898</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>161.45 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>165.03 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 18, 18, 8</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Kr] 4d<span style="vertical-align:super">10</span> 5s<span style="vertical-align:super">2</span> 5p<span style="vertical-align:super">6</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Cs_el">
+            <p class="Z">55</p>
+            <p class="sym">Cs</p>
+            <p class="A">132.9055</p>
+        </div>
+        <div class="des" id="Cs_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">CAESIUM</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1860</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>301.59 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>944.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 18, 18, 8, 1</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Xe] 6s<span style="vertical-align:super">1</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ba_el">
+            <p class="Z">56</p>
+            <p class="sym">Ba</p>
+            <p class="A">137.327</p>
+        </div>
+        <div class="des" id="Ba_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">BARIUM</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1774</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>1000.15 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>2170.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 18, 18, 8, 2</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Xe] 6s<span style="vertical-align:super">2</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="La_el">
+            <p class="Z">57</p>
+            <p class="sym">La</p>
+            <p class="A">138.9055</p>
+        </div>
+        <div class="des" id="La_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">LANTHANUM</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1839</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>1193.15 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>3737.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 18, 18, 9, 2</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Xe] 5d<span style="vertical-align:super">1</span> 6s<span style="vertical-align:super">2</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ce_el">
+            <p class="Z">58</p>
+            <p class="sym">Ce</p>
+            <p class="A">140.116</p>
+        </div>
+        <div class="des" id="Ce_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">CERIUM</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1803</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>1068.15 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>3716.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 18, 19, 9, 2</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Xe] 4f<span style="vertical-align:super">1</span> 5d<span style="vertical-align:super">1</span> 6s<span style="vertical-align:super">2</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Pr_el">
+            <p class="Z">59</p>
+            <p class="sym">Pr</p>
+            <p class="A">140.9077</p>
+        </div>
+        <div class="des" id="Pr_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">PRASEODYMIUM</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1885</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>1208.15 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>3793.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 18, 21, 8, 2</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Xe] 4f<span style="vertical-align:super">3</span> 6s<span style="vertical-align:super">2</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Nd_el">
+            <p class="Z">60</p>
+            <p class="sym">Nd</p>
+            <p class="A">144.242</p>
+        </div>
+        <div class="des" id="Nd_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">NEODYMIUM</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1885</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>1297.15 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>3347.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 18, 22, 8, 2</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Xe] 4f<span style="vertical-align:super">4</span> 6s<span style="vertical-align:super">2</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Pm_el">
+            <p class="Z">61</p>
+            <p class="sym">Pm</p>
+            <p class="A">145</p>
+        </div>
+        <div class="des" id="Pm_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">PROMETHIUM</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1945</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>1315.15 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>3273.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 18, 23, 8, 2</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Xe] 4f<span style="vertical-align:super">5</span> 6s<span style="vertical-align:super">2</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Sm_el">
+            <p class="Z">62</p>
+            <p class="sym">Sm</p>
+            <p class="A">150.36</p>
+        </div>
+        <div class="des" id="Sm_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">SAMARIUM</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1879</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>1345.15 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>2067.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 18, 24, 8, 2</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Xe] 4f<span style="vertical-align:super">6</span> 6s<span style="vertical-align:super">2</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Eu_el">
+            <p class="Z">63</p>
+            <p class="sym">Eu</p>
+            <p class="A">151.964</p>
+        </div>
+        <div class="des" id="Eu_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">EUROPIUM</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1896</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>1099.15 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>1802.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 18, 25, 8, 2</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Xe] 4f<span style="vertical-align:super">7</span> 6s<span style="vertical-align:super">2</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Gd_el">
+            <p class="Z">64</p>
+            <p class="sym">Gd</p>
+            <p class="A">157.25</p>
+        </div>
+        <div class="des" id="Gd_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">GADOLINIUM</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1880</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>1585.15 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>3546.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 18, 25, 9, 2</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Xe] 4f<span style="vertical-align:super">7</span> 5d<span style="vertical-align:super">1</span> 6s<span style="vertical-align:super">2</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Tb_el">
+            <p class="Z">65</p>
+            <p class="sym">Tb</p>
+            <p class="A">158.9254</p>
+        </div>
+        <div class="des" id="Tb_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">TERBIUM</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1843</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>1629.15 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>3503.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 18, 27, 8, 2</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Xe] 4f<span style="vertical-align:super">9</span> 6s<span style="vertical-align:super">2</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Dy_el">
+            <p class="Z">66</p>
+            <p class="sym">Dy</p>
+            <p class="A">162.50</p>
+        </div>
+        <div class="des" id="Dy_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">DYSPROSIUM</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1886</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>1680.15 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>2840.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 18, 28, 8, 2</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Xe] 4f<span style="vertical-align:super">10</span> 6s<span style="vertical-align:super">2</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ho_el">
+            <p class="Z">67</p>
+            <p class="sym">Ho</p>
+            <p class="A">164.9303</p>
+        </div>
+        <div class="des" id="Ho_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">HOLMIUM</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1878</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>1734.15 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>2993.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 18, 29, 8, 2</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Xe] 4f<span style="vertical-align:super">11</span> 6s<span style="vertical-align:super">2</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Er_el">
+            <p class="Z">68</p>
+            <p class="sym">Er</p>
+            <p class="A">167.259</p>
+        </div>
+        <div class="des" id="Er_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">ERBIUM</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1843</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>1802.15 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>3141.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 18, 30, 8, 2</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Xe] 4f<span style="vertical-align:super">12</span> 6s<span style="vertical-align:super">2</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Tm_el">
+            <p class="Z">69</p>
+            <p class="sym">Tm</p>
+            <p class="A">168.9342</p>
+        </div>
+        <div class="des" id="Tm_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">THULIUM</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1879</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>1818.15 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>2223.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 18, 31, 8, 2</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Xe] 4f<span style="vertical-align:super">13</span> 6s<span style="vertical-align:super">2</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Yb_el">
+            <p class="Z">70</p>
+            <p class="sym">Yb</p>
+            <p class="A">173.054</p>
+        </div>
+        <div class="des" id="Yb_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">YTTERBIUM</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1878</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>1097.15 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>1469.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 18, 32, 8, 2</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Xe] 4f<span style="vertical-align:super">14</span> 6s<span style="vertical-align:super">2</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Lu_el">
+            <p class="Z">71</p>
+            <p class="sym">Lu</p>
+            <p class="A">174.9886</p>
+        </div>
+        <div class="des" id="Lu_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">LUTETIUM</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1907</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>1925.15 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>3675.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 18, 32, 9, 2</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Xe] 4f<span style="vertical-align:super">14</span> 5d<span style="vertical-align:super">1</span> 6s<span style="vertical-align:super">2</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Hf_el">
+            <p class="Z">72</p>
+            <p class="sym">Hf</p>
+            <p class="A">178.49</p>
+        </div>
+        <div class="des" id="Hf_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">HAFNIUM</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1922</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>2506.15 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>4876.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 18, 32, 10, 2</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Xe] 4f<span style="vertical-align:super">14</span> 5d<span style="vertical-align:super">2</span> 6s<span style="vertical-align:super">2</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ta_el">
+            <p class="Z">73</p>
+            <p class="sym">Ta</p>
+            <p class="A">180.9479</p>
+        </div>
+        <div class="des" id="Ta_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">TANTALUM</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1802</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>3290.15 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>5731.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 18, 32, 11, 2</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Xe] 4f<span style="vertical-align:super">14</span> 5d<span style="vertical-align:super">3</span> 6s<span style="vertical-align:super">2</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="W_el">
+            <p class="Z">74</p>
+            <p class="sym">W</p>
+            <p class="A">183.84</p>
+        </div>
+        <div class="des" id="W_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">TUNGSTEN</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1781</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>3695.15 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>5828.15 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8, 18, 32, 12, 2</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[Xe] 4f<span style="vertical-align:super">14</span> 5d<span style="vertical-align:super">4</span> 6s<span style="vertical-align:super">2</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ne_el">
+            <p class="Z">10</p>
+            <p class="sym">Ne</p>
+            <p class="A">20.1797</p>
+        </div>
+        <div class="des" id="Ne_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">NEON</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1898</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>24.56 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>27.07 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[He] 2s<span style="vertical-align:super">2</span> 2p<span style="vertical-align:super">6</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ne_el">
+            <p class="Z">10</p>
+            <p class="sym">Ne</p>
+            <p class="A">20.1797</p>
+        </div>
+        <div class="des" id="Ne_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">NEON</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1898</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>24.56 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>27.07 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[He] 2s<span style="vertical-align:super">2</span> 2p<span style="vertical-align:super">6</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ne_el">
+            <p class="Z">10</p>
+            <p class="sym">Ne</p>
+            <p class="A">20.1797</p>
+        </div>
+        <div class="des" id="Ne_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">NEON</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1898</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>24.56 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>27.07 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[He] 2s<span style="vertical-align:super">2</span> 2p<span style="vertical-align:super">6</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ne_el">
+            <p class="Z">10</p>
+            <p class="sym">Ne</p>
+            <p class="A">20.1797</p>
+        </div>
+        <div class="des" id="Ne_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">NEON</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1898</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>24.56 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>27.07 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[He] 2s<span style="vertical-align:super">2</span> 2p<span style="vertical-align:super">6</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ne_el">
+            <p class="Z">10</p>
+            <p class="sym">Ne</p>
+            <p class="A">20.1797</p>
+        </div>
+        <div class="des" id="Ne_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">NEON</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1898</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>24.56 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>27.07 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[He] 2s<span style="vertical-align:super">2</span> 2p<span style="vertical-align:super">6</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ne_el">
+            <p class="Z">10</p>
+            <p class="sym">Ne</p>
+            <p class="A">20.1797</p>
+        </div>
+        <div class="des" id="Ne_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">NEON</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1898</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>24.56 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>27.07 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[He] 2s<span style="vertical-align:super">2</span> 2p<span style="vertical-align:super">6</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ne_el">
+            <p class="Z">10</p>
+            <p class="sym">Ne</p>
+            <p class="A">20.1797</p>
+        </div>
+        <div class="des" id="Ne_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">NEON</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1898</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>24.56 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>27.07 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[He] 2s<span style="vertical-align:super">2</span> 2p<span style="vertical-align:super">6</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ne_el">
+            <p class="Z">10</p>
+            <p class="sym">Ne</p>
+            <p class="A">20.1797</p>
+        </div>
+        <div class="des" id="Ne_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">NEON</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1898</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>24.56 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>27.07 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[He] 2s<span style="vertical-align:super">2</span> 2p<span style="vertical-align:super">6</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ne_el">
+            <p class="Z">10</p>
+            <p class="sym">Ne</p>
+            <p class="A">20.1797</p>
+        </div>
+        <div class="des" id="Ne_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">NEON</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1898</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>24.56 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>27.07 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[He] 2s<span style="vertical-align:super">2</span> 2p<span style="vertical-align:super">6</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ne_el">
+            <p class="Z">10</p>
+            <p class="sym">Ne</p>
+            <p class="A">20.1797</p>
+        </div>
+        <div class="des" id="Ne_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">NEON</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1898</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>24.56 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>27.07 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[He] 2s<span style="vertical-align:super">2</span> 2p<span style="vertical-align:super">6</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ne_el">
+            <p class="Z">10</p>
+            <p class="sym">Ne</p>
+            <p class="A">20.1797</p>
+        </div>
+        <div class="des" id="Ne_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">NEON</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1898</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>24.56 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>27.07 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[He] 2s<span style="vertical-align:super">2</span> 2p<span style="vertical-align:super">6</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ne_el">
+            <p class="Z">10</p>
+            <p class="sym">Ne</p>
+            <p class="A">20.1797</p>
+        </div>
+        <div class="des" id="Ne_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">NEON</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1898</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>24.56 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>27.07 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[He] 2s<span style="vertical-align:super">2</span> 2p<span style="vertical-align:super">6</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ne_el">
+            <p class="Z">10</p>
+            <p class="sym">Ne</p>
+            <p class="A">20.1797</p>
+        </div>
+        <div class="des" id="Ne_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">NEON</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1898</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>24.56 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>27.07 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[He] 2s<span style="vertical-align:super">2</span> 2p<span style="vertical-align:super">6</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ne_el">
+            <p class="Z">10</p>
+            <p class="sym">Ne</p>
+            <p class="A">20.1797</p>
+        </div>
+        <div class="des" id="Ne_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">NEON</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1898</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>24.56 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>27.07 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[He] 2s<span style="vertical-align:super">2</span> 2p<span style="vertical-align:super">6</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ne_el">
+            <p class="Z">10</p>
+            <p class="sym">Ne</p>
+            <p class="A">20.1797</p>
+        </div>
+        <div class="des" id="Ne_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">NEON</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1898</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>24.56 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>27.07 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[He] 2s<span style="vertical-align:super">2</span> 2p<span style="vertical-align:super">6</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ne_el">
+            <p class="Z">10</p>
+            <p class="sym">Ne</p>
+            <p class="A">20.1797</p>
+        </div>
+        <div class="des" id="Ne_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">NEON</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1898</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>24.56 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>27.07 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[He] 2s<span style="vertical-align:super">2</span> 2p<span style="vertical-align:super">6</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ne_el">
+            <p class="Z">10</p>
+            <p class="sym">Ne</p>
+            <p class="A">20.1797</p>
+        </div>
+        <div class="des" id="Ne_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">NEON</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1898</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>24.56 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>27.07 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[He] 2s<span style="vertical-align:super">2</span> 2p<span style="vertical-align:super">6</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ne_el">
+            <p class="Z">10</p>
+            <p class="sym">Ne</p>
+            <p class="A">20.1797</p>
+        </div>
+        <div class="des" id="Ne_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">NEON</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1898</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>24.56 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>27.07 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[He] 2s<span style="vertical-align:super">2</span> 2p<span style="vertical-align:super">6</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ne_el">
+            <p class="Z">10</p>
+            <p class="sym">Ne</p>
+            <p class="A">20.1797</p>
+        </div>
+        <div class="des" id="Ne_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">NEON</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1898</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>24.56 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>27.07 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[He] 2s<span style="vertical-align:super">2</span> 2p<span style="vertical-align:super">6</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ne_el">
+            <p class="Z">10</p>
+            <p class="sym">Ne</p>
+            <p class="A">20.1797</p>
+        </div>
+        <div class="des" id="Ne_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">NEON</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1898</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>24.56 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>27.07 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[He] 2s<span style="vertical-align:super">2</span> 2p<span style="vertical-align:super">6</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ne_el">
+            <p class="Z">10</p>
+            <p class="sym">Ne</p>
+            <p class="A">20.1797</p>
+        </div>
+        <div class="des" id="Ne_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">NEON</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1898</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>24.56 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>27.07 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[He] 2s<span style="vertical-align:super">2</span> 2p<span style="vertical-align:super">6</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ne_el">
+            <p class="Z">10</p>
+            <p class="sym">Ne</p>
+            <p class="A">20.1797</p>
+        </div>
+        <div class="des" id="Ne_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">NEON</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1898</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>24.56 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>27.07 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[He] 2s<span style="vertical-align:super">2</span> 2p<span style="vertical-align:super">6</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ne_el">
+            <p class="Z">10</p>
+            <p class="sym">Ne</p>
+            <p class="A">20.1797</p>
+        </div>
+        <div class="des" id="Ne_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">NEON</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1898</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>24.56 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>27.07 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[He] 2s<span style="vertical-align:super">2</span> 2p<span style="vertical-align:super">6</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ne_el">
+            <p class="Z">10</p>
+            <p class="sym">Ne</p>
+            <p class="A">20.1797</p>
+        </div>
+        <div class="des" id="Ne_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">NEON</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1898</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>24.56 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>27.07 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[He] 2s<span style="vertical-align:super">2</span> 2p<span style="vertical-align:super">6</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ne_el">
+            <p class="Z">10</p>
+            <p class="sym">Ne</p>
+            <p class="A">20.1797</p>
+        </div>
+        <div class="des" id="Ne_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">NEON</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1898</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>24.56 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>27.07 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[He] 2s<span style="vertical-align:super">2</span> 2p<span style="vertical-align:super">6</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ne_el">
+            <p class="Z">10</p>
+            <p class="sym">Ne</p>
+            <p class="A">20.1797</p>
+        </div>
+        <div class="des" id="Ne_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">NEON</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1898</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>24.56 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>27.07 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[He] 2s<span style="vertical-align:super">2</span> 2p<span style="vertical-align:super">6</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ne_el">
+            <p class="Z">10</p>
+            <p class="sym">Ne</p>
+            <p class="A">20.1797</p>
+        </div>
+        <div class="des" id="Ne_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">NEON</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1898</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>24.56 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>27.07 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[He] 2s<span style="vertical-align:super">2</span> 2p<span style="vertical-align:super">6</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ne_el">
+            <p class="Z">10</p>
+            <p class="sym">Ne</p>
+            <p class="A">20.1797</p>
+        </div>
+        <div class="des" id="Ne_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">NEON</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1898</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>24.56 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>27.07 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[He] 2s<span style="vertical-align:super">2</span> 2p<span style="vertical-align:super">6</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ne_el">
+            <p class="Z">10</p>
+            <p class="sym">Ne</p>
+            <p class="A">20.1797</p>
+        </div>
+        <div class="des" id="Ne_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">NEON</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1898</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>24.56 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>27.07 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[He] 2s<span style="vertical-align:super">2</span> 2p<span style="vertical-align:super">6</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ne_el">
+            <p class="Z">10</p>
+            <p class="sym">Ne</p>
+            <p class="A">20.1797</p>
+        </div>
+        <div class="des" id="Ne_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">NEON</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1898</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>24.56 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>27.07 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[He] 2s<span style="vertical-align:super">2</span> 2p<span style="vertical-align:super">6</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ne_el">
+            <p class="Z">10</p>
+            <p class="sym">Ne</p>
+            <p class="A">20.1797</p>
+        </div>
+        <div class="des" id="Ne_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">NEON</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1898</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>24.56 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>27.07 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[He] 2s<span style="vertical-align:super">2</span> 2p<span style="vertical-align:super">6</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ne_el">
+            <p class="Z">10</p>
+            <p class="sym">Ne</p>
+            <p class="A">20.1797</p>
+        </div>
+        <div class="des" id="Ne_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">NEON</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1898</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>24.56 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>27.07 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[He] 2s<span style="vertical-align:super">2</span> 2p<span style="vertical-align:super">6</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ne_el">
+            <p class="Z">10</p>
+            <p class="sym">Ne</p>
+            <p class="A">20.1797</p>
+        </div>
+        <div class="des" id="Ne_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">NEON</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1898</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>24.56 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>27.07 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[He] 2s<span style="vertical-align:super">2</span> 2p<span style="vertical-align:super">6</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ne_el">
+            <p class="Z">10</p>
+            <p class="sym">Ne</p>
+            <p class="A">20.1797</p>
+        </div>
+        <div class="des" id="Ne_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">NEON</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1898</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>24.56 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>27.07 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[He] 2s<span style="vertical-align:super">2</span> 2p<span style="vertical-align:super">6</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ne_el">
+            <p class="Z">10</p>
+            <p class="sym">Ne</p>
+            <p class="A">20.1797</p>
+        </div>
+        <div class="des" id="Ne_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">NEON</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1898</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>24.56 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>27.07 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[He] 2s<span style="vertical-align:super">2</span> 2p<span style="vertical-align:super">6</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ne_el">
+            <p class="Z">10</p>
+            <p class="sym">Ne</p>
+            <p class="A">20.1797</p>
+        </div>
+        <div class="des" id="Ne_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">NEON</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1898</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>24.56 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>27.07 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[He] 2s<span style="vertical-align:super">2</span> 2p<span style="vertical-align:super">6</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ne_el">
+            <p class="Z">10</p>
+            <p class="sym">Ne</p>
+            <p class="A">20.1797</p>
+        </div>
+        <div class="des" id="Ne_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">NEON</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1898</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>24.56 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>27.07 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[He] 2s<span style="vertical-align:super">2</span> 2p<span style="vertical-align:super">6</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ne_el">
+            <p class="Z">10</p>
+            <p class="sym">Ne</p>
+            <p class="A">20.1797</p>
+        </div>
+        <div class="des" id="Ne_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">NEON</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1898</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>24.56 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>27.07 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[He] 2s<span style="vertical-align:super">2</span> 2p<span style="vertical-align:super">6</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ne_el">
+            <p class="Z">10</p>
+            <p class="sym">Ne</p>
+            <p class="A">20.1797</p>
+        </div>
+        <div class="des" id="Ne_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">NEON</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1898</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>24.56 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>27.07 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[He] 2s<span style="vertical-align:super">2</span> 2p<span style="vertical-align:super">6</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ne_el">
+            <p class="Z">10</p>
+            <p class="sym">Ne</p>
+            <p class="A">20.1797</p>
+        </div>
+        <div class="des" id="Ne_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">NEON</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1898</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>24.56 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>27.07 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[He] 2s<span style="vertical-align:super">2</span> 2p<span style="vertical-align:super">6</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ne_el">
+            <p class="Z">10</p>
+            <p class="sym">Ne</p>
+            <p class="A">20.1797</p>
+        </div>
+        <div class="des" id="Ne_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">NEON</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1898</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>24.56 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>27.07 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[He] 2s<span style="vertical-align:super">2</span> 2p<span style="vertical-align:super">6</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ne_el">
+            <p class="Z">10</p>
+            <p class="sym">Ne</p>
+            <p class="A">20.1797</p>
+        </div>
+        <div class="des" id="Ne_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">NEON</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1898</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>24.56 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>27.07 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[He] 2s<span style="vertical-align:super">2</span> 2p<span style="vertical-align:super">6</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ne_el">
+            <p class="Z">10</p>
+            <p class="sym">Ne</p>
+            <p class="A">20.1797</p>
+        </div>
+        <div class="des" id="Ne_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">NEON</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1898</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>24.56 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>27.07 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[He] 2s<span style="vertical-align:super">2</span> 2p<span style="vertical-align:super">6</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="el" id="Ne_el">
+            <p class="Z">10</p>
+            <p class="sym">Ne</p>
+            <p class="A">20.1797</p>
+        </div>
+        <div class="des" id="Ne_des">
+            <table class="des_table">
+                <tr>
+                    <td class="name">NEON</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discovered</td>
+                    <td>1898</td>
+                </tr>
+                <tr>
+                    <td>Melting Point</td>
+                    <td>24.56 K</td>
+                </tr>
+                <tr>
+                    <td>Boiling Point</td>
+                    <td>27.07 K</td>
+                </tr>
+                <tr>
+                    <td>Electrons per shell</td>
+                    <td>2, 8</td>
+                </tr>
+                <tr>
+                    <td>Electron configuration</td>
+                    <td>[He] 2s<span style="vertical-align:super">2</span> 2p<span style="vertical-align:super">6</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</section>
+
+<script>
+    function animate1 (idName1, idName2) {
+        idName1.style.height = "135px";
+        idName2.style.height = "135px";
+    }
+    function animate2 (idName1, idName2) {
+        idName1.style.height = "0px";
+        idName2.style.height = "0px";
+    }
+</script>
+<script>
+    function select (idName, className) {
+        document.querySelectorAll('td').forEach(td => {
+            td.style.filter = 'opacity(30%)';
+        });
+        var x = document.getElementsByClassName(className);
+        for(i=0; i<x.length; i++) {
+            x[i].style.filter = 'opacity(100%)';
+            x[i].style.boxShadow = '0 0 2px 1px white';
+        }
+        idName.style.filter = 'opacity(100%)';
+        idName.style.cursor = 'default';
+    }
+    function unSelect () {
+        document.querySelectorAll('td').forEach(td => {
+            td.style.filter = 'opacity(100%)';
+            td.style.boxShadow = 'none';
+        });
+    }
+</script>
+<script>
+
+</script>
+</body>
+</html>
